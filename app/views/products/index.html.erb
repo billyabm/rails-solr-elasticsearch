@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+<div class="col-md-6">
+  <%= form_tag products_path, :method => 'get' do %>
+    <p>
+      <label>Search</label>
+      <%= select_tag "search_type", options_for_select([ "with", "fulltext", "phrase" ], params[:search_type]) %>
+    <p>
+    <p>
+      <label>Search</label>
+      <%= text_field_tag :search, params[:search] %>
+    </p>
+    <p>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+</div>
+<% unless @solr_obj.nil? %>
+  <div style="background-color: #ccc;">
+    <p>
+      <%=  @solr_obj.inspect %>
+    </p>
+  </div>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>

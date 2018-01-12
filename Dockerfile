@@ -24,7 +24,8 @@ RUN set -ex && apk add --no-cache \
   openssl \
   postgresql-dev \
   tzdata
-
+  
+RUN apk add --update nodejs
 # 7: Copy the project's Gemfile + lock:
 ADD Gemfile* /usr/src/
 
