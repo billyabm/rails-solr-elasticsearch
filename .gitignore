@@ -42,3 +42,11 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/node_modules
+/yarn-error.log
+.keep
